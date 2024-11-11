@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>PXI Fusion Dashboard</title>
     <style>
         /* General styling for the entire page */
         body {
@@ -54,8 +54,6 @@
             padding: 20px;
             text-align: left;
             transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            color: inherit;
         }
 
         /* Cheat card hover effect */
@@ -64,13 +62,13 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        /* Cheat logo */
+        /* Cheat logo with extra margin for spacing */
         .cheat-logo {
             width: 50px;
             height: 50px;
             border-radius: 4px;
-            margin-bottom: 20px;
-            margin-top: 10px;
+            margin-bottom: 20px; /* Extra space below the logo */
+            margin-top: 10px; /* Extra space above the logo */
         }
 
         /* Cheat name */
@@ -103,15 +101,15 @@
     </style>
 </head>
 <body>
-    <script>
-        document.title = "Dashboard";
-    </script>
-    
-    <div class="dashboard-title">Prodigy Cheats</div>
-    <div class="dashboard-subtitle">PXI Fusion is always improving. Here are all of the hacks and cheats we currently support:</div>
 
+    <!-- Dashboard Header -->
+    <div class="dashboard-title">PXI Fusion Dashboard</div>
+    <div class="dashboard-subtitle">Choose a cheat from below</div>
+
+    <!-- Cheats Container -->
     <div class="cheats-container">
-        <a href="prodigy.html" class="cheat-card">
+        <!-- Prodigy Cheat Card -->
+        <div class="cheat-card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Prodigy_icon_2020.svg" alt="Prodigy Cheat Logo" class="cheat-logo">
             <div class="cheat-name">Prodigy</div>
             <ul class="cheat-features">
@@ -119,7 +117,11 @@
                 <li>Free Pets</li>
                 <li>Unlock All Levels</li>
             </ul>
-        </a>
+        </div>
     </div>
+
+    <!-- AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8739942460911283" crossorigin="anonymous"></script>
+
 </body>
 </html>
