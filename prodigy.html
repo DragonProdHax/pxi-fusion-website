@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prodigy</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.min.css">
     <style>
+        /* General styling */
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f4f8;
@@ -18,161 +20,88 @@
 
         /* Back button styling */
         .back-button {
-            align-self: flex-start;
-            background-color: #007bff;
-            color: #fff;
+            position: fixed;
+            top: 20px;
+            left: 20px;
             padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 5px;
             text-decoration: none;
-            font-size: 1em;
-            margin-bottom: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Title styling */
-        .title {
-            font-size: 2em;
-            color: #333;
             font-weight: bold;
-            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Content container styling */
+        .content-container {
+            max-width: 800px;
+            width: 100%;
             text-align: center;
         }
 
-        /* Instructions styling */
-        .instructions {
-            background-color: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 800px;
-            margin-bottom: 20px;
-        }
-
-        .instructions h3 {
-            color: #333;
-            font-size: 1.2em;
-            margin-top: 0;
-        }
-
-        .instructions p {
-            margin: 5px 0;
-            line-height: 1.5;
-        }
-
-        .cheat-list {
-            list-style: none;
-            padding: 0;
-            font-size: 0.95em;
-        }
-
-        .cheat-list li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .cheat-list li::before {
-            content: '✓';
-            color: #4caf50;
-            margin-right: 5px;
+        /* Materials and video section styling */
+        .materials {
+            margin: 20px 0;
+            font-size: 1.1em;
             font-weight: bold;
         }
 
-        /* Video embedding styling */
-        .video-container {
-            position: relative;
+        iframe {
             width: 100%;
-            max-width: 800px;
-            margin: 20px 0;
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 450px;
-            border: none;
+            height: 400px;
+            margin-top: 20px;
             border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
-    <!-- SweetAlert Script Import -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <script>
-        document.title = "Prodigy";
-    </script>
-
+    <!-- Back Button -->
     <a href="index.html" class="back-button">Back to Dashboard</a>
 
-    <div class="title">Prodigy Installation Tutorial</div>
+    <!-- Content Container -->
+    <div class="content-container">
+        <!-- Materials Section -->
+        <div class="materials">
+            Materials needed: <a href="https://github.com/PXIFusionX/PXI-Fusion-Official-Github/blob/main/PXI-Fusion%20X-Exstension.zip" target="_blank">Download PXI Fusion Extension</a>
+        </div>
 
-    <div class="instructions">
-        <h3>Follow these steps to install PXI Fusion:</h3>
-        <p>Step 1: Download the PXI Fusion extension file.</p>
-        <p>Step 2: Open the Chrome Extensions Page by clicking the three dots in the top-right corner, selecting "More Tools," and then "Extensions." Or, type <code>chrome://extensions/</code> in the address bar.</p>
-        <p>Step 3: Enable Developer Mode on the Extensions page by toggling the switch in the upper-right corner.</p>
-        <p>Step 4: Click "Load unpacked," then choose the folder containing the unzipped PXI Fusion files (not the ZIP file itself).</p>
-        <p>For more details, view the video below. You'll need some materials before starting.</p>
+        <!-- Instructions and Video -->
+        <h2>Prodigy Cheats Installation Tutorial</h2>
+        <p>Install the PXI Fusion extension by following the steps below:</p>
+        <ol>
+            <li>Step 1: Download the extension using the link above.</li>
+            <li>Step 2: Open Chrome Extensions (chrome://extensions/).</li>
+            <li>Step 3: Enable Developer Mode.</li>
+            <li>Step 4: Click "Load unpacked" and select the unzipped PXI Fusion folder.</li>
+        </ol>
+
+        <!-- Embedded Video with SweetAlert trigger on play -->
+        <iframe 
+            src="https://www.youtube.com/embed/5vD_edu5Ypk?enablejsapi=1" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen 
+            id="tutorialVideo"
+            onplay="showMaterialsPopup()">
+        </iframe>
     </div>
 
-    <!-- Embedded Video with Popup Trigger on Click -->
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/5vD_edu5Ypk?rel=0&modestbranding=1" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen 
-                onclick="showMaterialsPopup()"></iframe>
-    </div>
-
-    <div class="title">Prodigy Hacks</div>
-    <ul class="cheat-list">
-        <li>Max Account</li>
-        <li>Set Gold</li>
-        <li>Set Level</li>
-        <li>Permanent Morph</li>
-        <li>Uncap Level (Client-Side Only)</li>
-        <li>Set Member Stars</li>
-        <li>Set Bounty Points</li>
-        <li>Set Dark Tower Floor</li>
-        <li>Complete Current Task In Quest</li>
-        <li>Change Name</li>
-        <li>Set Name (Client-Side Only)</li>
-        <li>Set Grade</li>
-        <li>Unlimited Spins</li>
-        <li>Item Stacker</li>
-        <li>Clear Inventory</li>
-        <li>Selector (Basic)</li>
-        <li>Selector (Advanced)</li>
-        <li>Remove Item</li>
-        <li>Obtain All Furniture</li>
-        <li>Save Inventory</li>
-        <li>Get All Pets</li>
-        <li>Clear All Pets</li>
-        <li>Add Pet</li>
-        <li>Delete Pet</li>
-        <li>Edit Pet</li>
-        <li>Save Pet Data</li>
-        <li>Escape Battle</li>
-        <li>PVP Health</li>
-        <li>Fix Battle Crash</li>
-        <li>Make Player Invisible</li>
-        <li>Enable Debugging</li>
-    </ul>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
     <script>
-        // SweetAlert popup for materials needed
+        // Show popup for materials when the video is played
         function showMaterialsPopup() {
             Swal.fire({
                 title: 'Materials Needed',
-                html: `<a href="https://github.com/PXIFusionX/PXI-Fusion-Official-Github/blob/main/PXI-Fusion%20X-Exstension.zip" target="_blank">Download PXI Fusion Extension Files</a>`,
+                text: 'Make sure you have the PXI Fusion extension downloaded.',
                 icon: 'info',
                 confirmButtonText: 'Got it!'
             });
         }
+
+        // Event listener for video play to trigger SweetAlert
+        const video = document.getElementById('tutorialVideo');
+        video.addEventListener('play', showMaterialsPopup, { once: true }); // Popup shows only once
     </script>
 </body>
 </html>
