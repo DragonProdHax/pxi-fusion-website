@@ -53,6 +53,36 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
+        /* Hack list styling */
+        .hack-section {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .hack-section h2 {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .hack-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .hack-list li {
+            font-size: 1em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hack-list li::before {
+            content: '🔹';
+            color: #4caf50;
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body>
@@ -85,6 +115,72 @@
             id="tutorialVideo"
             onplay="showMaterialsPopup()">
         </iframe>
+
+        <!-- Hack List -->
+        <div class="hack-section">
+            <h2>Account Hacks</h2>
+            <ul class="hack-list">
+                <li>Max Account</li>
+                <li>Set Gold</li>
+                <li>Set Level</li>
+                <li>Permanent Morph</li>
+                <li>Uncap Level (Client-Side Only)</li>
+                <li>Set Member Stars</li>
+                <li>Set Bounty Points</li>
+                <li>Set Dark Tower Floor</li>
+                <li>Complete Current Task In Quest</li>
+                <li>Change Name</li>
+                <li>Set Name (Client-Side Only)</li>
+                <li>Set Grade</li>
+                <li>Unlimited Spins</li>
+            </ul>
+
+            <h2>Inventory Hacks</h2>
+            <ul class="hack-list">
+                <li>Item Stacker</li>
+                <li>Clear Inventory</li>
+                <li>Selector (Basic)</li>
+                <li>Selector (Advanced)</li>
+                <li>Remove Item</li>
+                <li>Obtain All Furniture</li>
+                <li>Save Inventory</li>
+            </ul>
+
+            <h2>Pet Hacks</h2>
+            <ul class="hack-list">
+                <li>Get All Pets</li>
+                <li>Clear All Pets</li>
+                <li>Add Pet</li>
+                <li>Delete Pet</li>
+                <li>Edit Pet</li>
+                <li>Save Pet Data</li>
+            </ul>
+
+            <h2>Battle Hacks</h2>
+            <ul class="hack-list">
+                <li>Escape Battle</li>
+                <li>PVP Health</li>
+                <li>Fix Battle Crash</li>
+            </ul>
+
+            <h2>Utility Hacks</h2>
+            <ul class="hack-list">
+                <li>Toggle Click Teleporting</li>
+                <li>Edit Walkspeed</li>
+                <li>Bobbified</li>
+                <li>Reset Account</li>
+                <li>Find the UserId of People on the Screen</li>
+                <li>Duplicate an Account</li>
+                <li>Teleport To World</li>
+            </ul>
+
+            <h2>Minigame Hacks</h2>
+            <ul class="hack-list">
+                <li>Edit Dino Dig Walkspeed</li>
+                <li>Extra Time In Dino Dig</li>
+                <li>End Dino Dig</li>
+            </ul>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
