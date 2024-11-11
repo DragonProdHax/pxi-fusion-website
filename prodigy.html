@@ -3,132 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prodigy Hack - PXI Fusion</title>
+    <title>Prodigy</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f4f8;
             color: #333;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
+        /* Back button styling */
         .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 12px 25px;
-            background-color: #333;
+            align-self: flex-start;
+            background-color: #007bff;
             color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, box-shadow 0.3s;
+            font-size: 1em;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
         }
+
         .back-button:hover {
-            background-color: #555;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background-color: #0056b3;
         }
+
+        /* Title styling */
         .title {
             font-size: 2em;
             color: #333;
             font-weight: bold;
-            margin-top: 70px;
+            margin-bottom: 20px;
+            text-align: center;
         }
-        .instructions-section, .hack-section, .video-section {
-            width: 100%;
-            max-width: 800px;
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            padding: 15px;
-            border-radius: 8px;
+
+        /* Instructions styling */
+        .instructions {
             background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 800px;
+            margin-bottom: 20px;
         }
-        .section-title {
-            font-size: 1.4em;
+
+        .instructions h3 {
             color: #333;
-            margin-bottom: 10px;
+            font-size: 1.2em;
+            margin-top: 0;
         }
-        .instruction-steps, .hack-list {
-            list-style-type: none;
+
+        .instructions p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .cheat-list {
+            list-style: none;
             padding: 0;
-            font-size: 1em;
+            font-size: 0.95em;
         }
-        .instruction-steps li, .hack-list li {
-            padding: 5px 0;
+
+        .cheat-list li {
             display: flex;
             align-items: center;
+            margin-bottom: 5px;
         }
-        .instruction-steps li::before, .hack-list li::before {
-            content: '✔️';
-            margin-right: 8px;
+
+        .cheat-list li::before {
+            content: '✓';
             color: #4caf50;
-        }
-        .video-section iframe {
-            width: 100%;
-            max-width: 800px;
-            height: 450px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 5px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    <script>
+        document.title = "Prodigy";
+    </script>
 
-    <!-- Back Button -->
-    <a href="index.html" class="back-button">⬅ Back to Dashboard</a>
+    <a href="index.html" class="back-button">Back to Dashboard</a>
 
-    <div class="title">Prodigy Cheats</div>
+    <div class="title">Prodigy Installation Tutorial</div>
 
-    <!-- Video Tutorial Section -->
-    <div class="video-section">
-        <h2 class="section-title">Video Tutorial 🎥</h2>
-        <iframe src="https://www.youtube.com/embed/5vD_edu5Ypk?start=180" title="YouTube video tutorial"></iframe>
+    <div class="instructions">
+        <h3>Follow these steps to install PXI Fusion:</h3>
+        <p>Step 1: Download the PXI Fusion extension file.</p>
+        <p>Step 2: Open the Chrome Extensions Page by clicking the three dots in the top-right corner, selecting "More Tools," and then "Extensions." Or, type <code>chrome://extensions/</code> in the address bar.</p>
+        <p>Step 3: Enable Developer Mode on the Extensions page by toggling the switch in the upper-right corner.</p>
+        <p>Step 4: Click "Load unpacked," then choose the folder containing the unzipped PXI Fusion files (not the ZIP file itself).</p>
+        <p>For more details, you can also watch the <a href="https://www.youtube.com/watch?v=5vD_edu5Ypk&t=180s" target="_blank">video tutorial</a>.</p>
     </div>
 
-    <!-- Instructions Section -->
-    <div class="instructions-section">
-        <h2 class="section-title">Installation Instructions 📥</h2>
-        <ul class="instruction-steps">
-            <li>Install the PXI Fusion Extension.</li>
-            <li>Open the Chrome Extensions Page: Click the three dots in the top-right corner, go to More Tools  Extensions, or type chrome://extensions/ in the address bar.</li>
-            <li>Enable Developer Mode: Toggle the Developer mode switch in the upper-right corner of the Extensions page.</li>
-            <li>Upload PXI Fusion: Click "Load unpacked." Unzip the PXI Fusion ZIP file and select the unzipped folder.</li>
-        </ul>
-    </div>
-
-    <!-- Hacks Section -->
-    <div class="hack-section">
-        <h2 class="section-title">Available Prodigy Hacks 💻</h2>
-        <ul class="hack-list">
-            <li>Max Account</li>
-            <li>Set Gold</li>
-            <li>Set Level</li>
-            <li>Permanent Morph</li>
-            <li>Uncap Level (Client-Side Only)</li>
-            <li>Set Member Stars</li>
-            <li>Set Bounty Points</li>
-            <li>Set Dark Tower Floor</li>
-            <li>Complete Current Task In Quest</li>
-            <li>Change Name</li>
-            <li>Set Name (Client-Side Only)</li>
-            <li>Set Grade</li>
-            <li>Unlimited Spins</li>
-            <li>Item Stacker</li>
-            <li>Clear Inventory</li>
-            <li>Selector (Basic)</li>
-            <li>Selector (Advanced)</li>
-            <li>Remove Item</li>
-            <li>Obtain All Furniture</li>
-            <li>Set Titans Hit</li>
-            <li>Duplicate an Account</li>
-            <li>Teleport To World</li>
-        </ul>
-    </div>
-
+    <div class="title">Prodigy Hacks</div>
+    <ul class="cheat-list">
+        <li>Max Account</li>
+        <li>Set Gold</li>
+        <li>Set Level</li>
+        <li>Permanent Morph</li>
+        <li>Uncap Level (Client-Side Only)</li>
+        <li>Set Member Stars</li>
+        <li>Set Bounty Points</li>
+        <li>Set Dark Tower Floor</li>
+        <li>Complete Current Task In Quest</li>
+        <li>Change Name</li>
+        <li>Set Name (Client-Side Only)</li>
+        <li>Set Grade</li>
+        <li>Unlimited Spins</li>
+        <li>Item Stacker</li>
+        <li>Clear Inventory</li>
+        <li>Selector (Basic)</li>
+        <li>Selector (Advanced)</li>
+        <li>Remove Item</li>
+        <li>Obtain All Furniture</li>
+        <li>Save Inventory</li>
+        <li>Get All Pets</li>
+        <li>Clear All Pets</li>
+        <li>Add Pet</li>
+        <li>Delete Pet</li>
+        <li>Edit Pet</li>
+        <li>Save Pet Data</li>
+        <li>Escape Battle</li>
+        <li>PVP Health</li>
+        <li>Fix Battle Crash</li>
+        <li>Toggle Click Teleporting</li>
+        <li>Edit Walkspeed</li>
+        <li>Bobbing On</li>
+    </ul>
 </body>
 </html>
