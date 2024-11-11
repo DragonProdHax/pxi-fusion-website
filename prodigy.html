@@ -83,7 +83,24 @@
             margin-right: 5px;
             font-weight: bold;
         }
+
+        /* Video embedding styling */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 8px;
+        }
     </style>
+    <!-- SweetAlert Script Import -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <script>
@@ -100,7 +117,15 @@
         <p>Step 2: Open the Chrome Extensions Page by clicking the three dots in the top-right corner, selecting "More Tools," and then "Extensions." Or, type <code>chrome://extensions/</code> in the address bar.</p>
         <p>Step 3: Enable Developer Mode on the Extensions page by toggling the switch in the upper-right corner.</p>
         <p>Step 4: Click "Load unpacked," then choose the folder containing the unzipped PXI Fusion files (not the ZIP file itself).</p>
-        <p>For more details, you can also watch the <a href="https://www.youtube.com/watch?v=5vD_edu5Ypk&t=180s" target="_blank">video tutorial</a>.</p>
+        <p>For more details, view the video below. You'll need some materials before starting.</p>
+    </div>
+
+    <!-- Embedded Video with Popup Trigger on Click -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/5vD_edu5Ypk?rel=0&modestbranding=1" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen 
+                onclick="showMaterialsPopup()"></iframe>
     </div>
 
     <div class="title">Prodigy Hacks</div>
@@ -137,5 +162,17 @@
         <li>Make Player Invisible</li>
         <li>Enable Debugging</li>
     </ul>
+
+    <script>
+        // SweetAlert popup for materials needed
+        function showMaterialsPopup() {
+            Swal.fire({
+                title: 'Materials Needed',
+                html: `<a href="https://github.com/PXIFusionX/PXI-Fusion-Official-Github/blob/main/PXI-Fusion%20X-Exstension.zip" target="_blank">Download PXI Fusion Extension Files</a>`,
+                icon: 'info',
+                confirmButtonText: 'Got it!'
+            });
+        }
+    </script>
 </body>
 </html>
