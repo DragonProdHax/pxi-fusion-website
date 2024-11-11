@@ -3,201 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prodigy</title>
+    <title>Prodigy Cheats</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.min.css">
     <style>
-        /* General styling */
+        /* General styling for the entire page */
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f4f8;
             color: #333;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* Back button styling */
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 10px 15px;
-            background-color: #4caf50;
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
+        /* Title styling */
+        .dashboard-title {
+            font-size: 2.5em;
+            color: #333;
+            margin-top: 30px;
             font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Content container styling */
-        .content-container {
-            max-width: 800px;
-            width: 100%;
+        /* Subtitle and description */
+        .dashboard-subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin: 10px 0 30px 0;
             text-align: center;
         }
 
-        /* Materials and video section styling */
-        .materials {
-            margin: 20px 0;
-            font-size: 1.1em;
-            font-weight: bold;
+        /* Cheat Section */
+        .cheat-section {
+            width: 80%;
+            max-width: 1200px;
+            margin-bottom: 20px;
         }
 
-        iframe {
-            width: 100%;
-            height: 400px;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Hack list styling */
-        .hack-section {
-            margin-top: 40px;
-            text-align: left;
-        }
-
-        .hack-section h2 {
-            font-size: 1.3em;
+        .cheat-section h2 {
+            font-size: 1.5em;
             color: #333;
             margin-bottom: 10px;
         }
 
-        .hack-list {
-            list-style: none;
+        .cheat-list {
+            list-style-type: none;
             padding: 0;
+            font-size: 1.1em;
         }
 
-        .hack-list li {
-            font-size: 1em;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
+        .cheat-list li {
+            margin-bottom: 10px;
         }
 
-        .hack-list li::before {
-            content: '🔹';
-            color: #4caf50;
-            margin-right: 8px;
+        /* Back Button Styling */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Embed Video Styling */
+        .video-container {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
+
     <!-- Back Button -->
-    <a href="index.html" class="back-button">Back to Dashboard</a>
+    <button class="back-button" onclick="window.location.href='index.html'">Back to Dashboard</button>
 
-    <!-- Content Container -->
-    <div class="content-container">
-        <!-- Materials Section -->
-        <div class="materials">
-            Materials needed: <a href="https://github.com/PXIFusionX/PXI-Fusion-Official-Github/blob/main/PXI-Fusion%20X-Exstension.zip" target="_blank">Download PXI Fusion Extension</a>
-        </div>
+    <!-- Tutorial Instructions -->
+    <div class="dashboard-title">Prodigy Cheat Installation Instructions</div>
+    <div class="dashboard-subtitle">Follow these steps to install the PXI Fusion Extension:</div>
 
-        <!-- Instructions and Video -->
-        <h2>Prodigy Cheats Installation Tutorial</h2>
-        <p>Install the PXI Fusion extension by following the steps below:</p>
-        <ol>
-            <li>Step 1: Download the extension using the link above.</li>
-            <li>Step 2: Open Chrome Extensions (chrome://extensions/).</li>
-            <li>Step 3: Enable Developer Mode.</li>
-            <li>Step 4: Click "Load unpacked" and select the unzipped PXI Fusion folder.</li>
-        </ol>
+    <div class="cheat-section">
+        <h2>Step 1: Install The PXI Fusion Extension</h2>
+        <p>Download the PXI Fusion ZIP file from the official repository: <a href="https://github.com/PXIFusionX/PXI-Fusion-Official-Github/blob/main/PXI-Fusion%20X-Exstension.zip" target="_blank">PXI Fusion Extension ZIP</a></p>
 
-        <!-- Embedded Video with SweetAlert trigger on play -->
-        <iframe 
-            src="https://www.youtube.com/embed/5vD_edu5Ypk?enablejsapi=1" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen 
-            id="tutorialVideo"
-            onplay="showMaterialsPopup()">
-        </iframe>
+        <h2>Step 2: Open the Chrome Extensions Page</h2>
+        <p>Open Google Chrome. Click on the three dots in the top-right corner of your browser. Go to More Tools > Extensions. Alternatively, type <code>chrome://extensions/</code> in the address bar and press Enter.</p>
 
-        <!-- Hack List -->
-        <div class="hack-section">
-            <h2>Account Hacks</h2>
-            <ul class="hack-list">
-                <li>Max Account</li>
-                <li>Set Gold</li>
-                <li>Set Level</li>
-                <li>Permanent Morph</li>
-                <li>Uncap Level (Client-Side Only)</li>
-                <li>Set Member Stars</li>
-                <li>Set Bounty Points</li>
-                <li>Set Dark Tower Floor</li>
-                <li>Complete Current Task In Quest</li>
-                <li>Change Name</li>
-                <li>Set Name (Client-Side Only)</li>
-                <li>Set Grade</li>
-                <li>Unlimited Spins</li>
-            </ul>
+        <h2>Step 3: Enable Developer Mode</h2>
+        <p>On the Extensions page, toggle the Developer mode switch in the upper-right corner.</p>
 
-            <h2>Inventory Hacks</h2>
-            <ul class="hack-list">
-                <li>Item Stacker</li>
-                <li>Clear Inventory</li>
-                <li>Selector (Basic)</li>
-                <li>Selector (Advanced)</li>
-                <li>Remove Item</li>
-                <li>Obtain All Furniture</li>
-                <li>Save Inventory</li>
-            </ul>
-
-            <h2>Pet Hacks</h2>
-            <ul class="hack-list">
-                <li>Get All Pets</li>
-                <li>Clear All Pets</li>
-                <li>Add Pet</li>
-                <li>Delete Pet</li>
-                <li>Edit Pet</li>
-                <li>Save Pet Data</li>
-            </ul>
-
-            <h2>Battle Hacks</h2>
-            <ul class="hack-list">
-                <li>Escape Battle</li>
-                <li>PVP Health</li>
-                <li>Fix Battle Crash</li>
-            </ul>
-
-            <h2>Utility Hacks</h2>
-            <ul class="hack-list">
-                <li>Toggle Click Teleporting</li>
-                <li>Edit Walkspeed</li>
-                <li>Bobbified</li>
-                <li>Reset Account</li>
-                <li>Find the UserId of People on the Screen</li>
-                <li>Duplicate an Account</li>
-                <li>Teleport To World</li>
-            </ul>
-
-            <h2>Minigame Hacks</h2>
-            <ul class="hack-list">
-                <li>Edit Dino Dig Walkspeed</li>
-                <li>Extra Time In Dino Dig</li>
-                <li>End Dino Dig</li>
-            </ul>
-        </div>
+        <h2>Step 4: Upload PXI Fusion</h2>
+        <p>Click the "Load unpacked" button that appears after enabling Developer mode. Select the folder containing the unzipped PXI Fusion files.</p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
-    <script>
-        // Show popup for materials when the video is played
-        function showMaterialsPopup() {
-            Swal.fire({
-                title: 'Materials Needed',
-                text: 'Make sure you have the PXI Fusion extension downloaded.',
-                icon: 'info',
-                confirmButtonText: 'Got it!'
-            });
-        }
+    <!-- YouTube Video -->
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/5vD_edu5Ypk?start=180" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 
-        // Event listener for video play to trigger SweetAlert
-        const video = document.getElementById('tutorialVideo');
-        video.addEventListener('play', showMaterialsPopup, { once: true }); // Popup shows only once
-    </script>
+    <!-- AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8739942460911283" crossorigin="anonymous"></script>
+
 </body>
 </html>
