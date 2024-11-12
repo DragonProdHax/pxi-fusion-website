@@ -5,27 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <style>
+        :root {
+            --bg-color: #f2f4f8;
+            --text-color: #333;
+            --card-bg: #fff;
+            --card-border: #e0e0e0;
+            --subtitle-color: #666;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #fff;
+            --card-bg: #2d2d2d;
+            --card-border: #404040;
+            --subtitle-color: #bbb;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f4f8;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .dashboard-title {
             font-size: 2.5em;
-            color: #333;
+            color: var(--text-color);
             margin-top: 30px;
             font-weight: bold;
         }
 
         .dashboard-subtitle {
             font-size: 1.2em;
-            color: #666;
+            color: var(--subtitle-color);
             margin: 10px 0 30px 0;
             text-align: center;
         }
@@ -41,8 +58,8 @@
         }
 
         .cheat-card {
-            background-color: #fff;
-            border: 1px solid #e0e0e0;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 260px;
@@ -67,7 +84,7 @@
 
         .cheat-name {
             font-size: 1.2em;
-            color: #333;
+            color: var(--text-color);
             font-weight: bold;
             margin-bottom: 10px;
         }
@@ -90,12 +107,37 @@
             margin-right: 5px;
             font-weight: bold;
         }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 25px;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2em;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8739942460911283"
         crossorigin="anonymous"></script>
 </head>
 <body>
-
     <div class="dashboard-title">PXI Fusion Cheats</div>
     <div class="dashboard-subtitle"> Here are all of the cheats we currently support:</div>
 
@@ -111,5 +153,32 @@
         </div>
     </div>
 
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-sun"></i>
+        <span>Change Theme</span>
+    </button>
+
+    <script>
+        function toggleTheme() {
+            const body = document.documentElement;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const icon = document.querySelector('.theme-toggle i');
+            icon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        // Load saved theme from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const icon = document.querySelector('.theme-toggle i');
+            icon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        });
+    </script>
 </body>
 </html>
