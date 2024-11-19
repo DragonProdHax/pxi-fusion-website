@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dkqqcqf6f/image/upload/v1731388818/PXI_Fusion_hoggof.png">
+    <title>Typing Hack Instructions</title>
+    <style>
+        :root {
+            --bg-color: #f2f4f8;
+            --text-color: #333;
+            --card-bg: #fff;
+            --card-border: #e0e0e0;
+            --subtitle-color: #666;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #fff;
+            --card-bg: #2d2d2d;
+            --card-border: #404040;
+            --subtitle-color: #bbb;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dashboard-title {
+            font-size: 2.5em;
+            color: var(--text-color);
+            margin-top: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .dashboard-subtitle {
+            font-size: 1.2em;
+            color: var(--subtitle-color);
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .instructions-container {
+            text-align: left;
+            max-width: 800px;
+            padding: 20px;
+            margin-top: 40px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructions-container ul {
+            padding-left: 20px;
+        }
+
+        .instructions-container li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .instructions-container li::before {
+            content: "🔹";
+            margin-right: 10px;
+        }
+
+        .code-box {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: var(--text-color);
+        }
+
+        .copy-btn {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .copy-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .copy-btn:active {
+            transform: scale(1);
+        }
+
+        .theme-toggle {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 25px;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2em;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="back-btn">← Back</a>
+    <div class="dashboard-title"> Typing Club Hack Instructions </div>
+    <div class="dashboard-subtitle">Follow the steps below to use the typing hack. ⚡</div>
+
+    <div class="instructions-container">
+        <p><strong>How to use the typing hack:</strong></p>
+        <ul>
+            <li>📝 Copy the code provided below.</li>
+            <li>💻 Open the game you want to hack in a new tab.</li>
+            <li>🔧 Press <strong>F12</strong> or <strong>Ctrl + Shift + I</strong> to open Developer Tools.</li>
+            <li>💬 Go to the <strong>Console</strong> tab.</li>
+            <li>🔨 Paste the code into the console and press <strong>Enter</strong>.</li>
+            <li>✅ The hack should now be active, and the game will work according to the code you entered.</li>
+        </ul>
+
+        <div class="code-box" id="codeBox">
+            // Typing Hack Code Example
+            const typingHack = () => {
+                const targetText = "Hello, world!";
+                let typedText = "";
+                let index = 0;
+                const interval = setInterval(() => {
+                    typedText += targetText[index];
+                    document.querySelector("#typingField").value = typedText;
+                    index++;
+                    if (index === targetText.length) clearInterval(interval);
+                }, 100); // Adjust typing speed (100ms between letters)
+            };
+            typingHack();
+        </div>
+
+        <button class="copy-btn" onclick="copyCode()">🖱️ Copy Code</button>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i> 🌙 Night
+    </button>
+
+    <script>
+        // Function to toggle between light and dark themes
+        function toggleTheme() {
+            let currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                document.querySelector('.theme-toggle').textContent = 'Day';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                document.querySelector('.theme-toggle').textContent = '🌙 Night';
+            }
+        }
+
+        // Load theme from localStorage and set button text
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-toggle').textContent = '🌙 Night';
+            } else {
+                document.body.removeAttribute('data-theme');
+                document.querySelector('.theme-toggle').textContent = 'Day';
+            }
+        };
+
+        // Function to copy the code
+        function copyCode() {
+            const codeBox = document.getElementById('codeBox');
+            const range = document.createRange();
+            range.selectNode(codeBox);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            alert('📋 Code copied to clipboard! 🎉');
+        }
+    </script>
+
+</body>
+
+</html>
