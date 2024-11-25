@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kahoot Api Viewer</title>
-  <script defer src="index.js"></script>
+  <title>Kahoot API Viewer</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -32,14 +31,39 @@
   </style>
 </head>
 <body>
-  <h1>Kahoot Api Viewer</h1>
-  <p>Enter the details below to start api:</p>
+  <h1>Kahoot API Viewer</h1>
+  <p>Enter the details below to start API:</p>
   <form id="botForm">
     <input id="pinInput" type="text" placeholder="Game PIN" required><br>
     <input id="botName" type="text" placeholder="Bot Base Name" required><br>
     <input id="botCount" type="number" placeholder="Number of Bots" required><br>
-    <button type="submit">Start Flood</button>
+    <button type="submit">Start Output</button>
   </form>
   <div id="output"></div>
+
+  <!-- Include kahoot.js-latest as a script -->
+  <script src="kahoot.js-latest"></script>
+  <script>
+    // JavaScript for bot functionality
+    document.getElementById("botForm").addEventListener("submit", (event) => {
+      event.preventDefault(); // Prevent form submission
+
+      const pin = document.getElementById("pinInput").value;
+      const name = document.getElementById("botName").value;
+      const count = parseInt(document.getElementById("botCount").value, 10);
+
+      joinTestAPI(pin, name, count);
+    });
+
+    function joinTestAPI(pin, name, botCount) {
+      for (let i = 1; i <= botCount; i++) {
+        const bot = new Kahoot();
+        const botName = `${name}${i}`;
+        bot.join(pin, botName)
+          .then(() => console.log(`Bot ${botName} joined successfully`))
+          .catch(err => console.error(`Bot ${botName} failed to join:`, err));
+      }
+    }
+  </script>
 </body>
 </html>

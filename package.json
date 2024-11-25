@@ -10,5 +10,6 @@
   "description": "",
   "dependencies": {
     "kahoot.js-latest": "^1.0.7"
-  }
+  },
+  "type": "module"
 }
