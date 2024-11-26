@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "express": "^4.21.1",
     "kahoot.js-latest": "^1.0.7"
   },
   "type": "module"
