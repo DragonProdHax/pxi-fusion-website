@@ -3,71 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Tester</title>
+    <title>Cookie Clicker</title>
     <style>
         body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            background-color: #f0f0f0;
         }
-        .input-group {
-            margin-bottom: 15px;
-        }
-        textarea {
-            width: 100%;
-            min-height: 100px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+        #cookie {
+            width: 150px;
+            height: 150px;
+            background: url('https://cdn.pixabay.com/photo/2016/03/05/19/02/cookie-1239204_1280.png') center/cover;
+            border-radius: 50%;
             cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-    <h1>API Tester</h1>
-    <div class="input-group">
-        <label for="userId">User ID:</label>
-        <input type="text" id="userId" placeholder="Enter user ID">
-    </div>
-    <div class="input-group">
-        <label for="requestBody">Request Body (JSON):</label>
-        <textarea id="requestBody" placeholder="Enter request body in JSON format"></textarea>
-    </div>
-    <button onclick="sendRequest()">Send Request</button>
-    <div class="input-group">
-        <h3>Response:</h3>
-        <pre id="response"></pre>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div id="cookie"></div>
     <script src="index.js"></script>
 </body>
-
 </html>
