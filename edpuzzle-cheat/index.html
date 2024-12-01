@@ -1,57 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PXI Fusion - Edpuzzle Cheat</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #0d1117;
-      color: #c9d1d9;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    header h1 {
-      color: #58a6ff;
-      font-size: 1.8rem;
-    }
-    .content {
-      text-align: center;
-      padding: 20px;
-      border: 2px solid #30363d;
-      border-radius: 8px;
-      background: #161b22;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 15px;
-      color: #fff;
-      background: #58a6ff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .btn:hover {
-      background: #1f6feb;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edpuzzle Cheat</title>
 </head>
 <body>
-  <header>
-    <h1>Edpuzzle Cheat Activated</h1>
-  </header>
-  <div class="content">
-    <p>Congratulations! The cheat for this Edpuzzle assignment is now active.</p>
-    <p>Instructions: Follow the provided steps to skip or complete the assignment.</p>
-    <a href="#" class="btn" onclick="window.close()">Close Popup</a>
-  </div>
+    <button id="alertButton">Click Me to Alert Edpuzzle</button>
+
+    <script>
+        // When the button is clicked
+        document.getElementById('alertButton').addEventListener('click', function() {
+            // Check if there's an opener (the original Edpuzzle page is open)
+            if (window.opener) {
+                // Alert message on the Edpuzzle page
+                window.opener.alert('Hi from the Edpuzzle Cheat Page!');
+            } else {
+                alert('No Edpuzzle page found!');
+            }
+        });
+    </script>
 </body>
 </html>
