@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dkqqcqf6f/image/upload/v1731388818/PXI_Fusion_hoggof.png">
+    <title>Status Page</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DJE5ESK6ZG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DJE5ESK6ZG');
+    </script>
+    <style>
+        :root {
+            --background-light: #ffffff;
+            --text-light: #000000;
+            --background-dark: #121212;
+            --text-dark: #ffffff;
+            --functional-green: #2ecc71;
+            --non-functional-red: #e74c3c;
+            --notification-orange: #f39c12;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: inherit;
+            border: 1px solid currentColor;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: 2px solid currentColor;
+            border-radius: 20px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: 2px solid currentColor;
+            border-radius: 20px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .status {
+            list-style: none;
+            padding: 0;
+        }
+
+        .status-item {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid currentColor;
+            background: inherit;
+        }
+
+        .status-item.up {
+            border-color: var(--functional-green);
+        }
+
+        .status-item.down {
+            border-color: var(--non-functional-red);
+        }
+
+        .notification {
+            background: var(--notification-orange);
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        body.dark-mode .notification {
+            background: #d35400;
+        }
+
+        .status-item p span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>PXI Fusion Status</h1>
+
+        <!-- Prodigy Hack Section -->
+        <section>
+            <h2>PXI Fusion: Prodigy Hack</h2>
+            <div id="notification-prodigy"></div>
+            <ul class="status" id="prodigy-status-list">
+                <!-- Dynamically updated -->
+            </ul>
+        </section>
+
+        <!-- Typing Hack Section -->
+        <section>
+            <h2>PXI Fusion: Typing Hack</h2>
+            <ul class="status">
+                <li class="status-item up">
+                    <strong>All Systems Online</strong>
+                    <p>Status: <span style="color: var(--functional-green);">up</span></p>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // Dark mode toggle
+        const toggleDarkMode = () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+        };
+
+        // Load dark mode preference
+        if (localStorage.getItem('dark-mode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Prodigy Hack Status
+        const prodigyHacks = [
+            { name: 'Max Account', status: 'down', problem: 'Pets can only battle when level 99.' },
+            { name: 'Get All Pets', status: 'down', problem: 'Pets can only battle when level 99.' },
+            { name: 'All Other Hacks', status: 'Up', problem: '' },
+        ];
+
+        // Render Prodigy Hack notification
+        const notificationProdigy = document.getElementById('notification-prodigy');
+        const prodigyIssues = prodigyHacks.filter(hack => hack.status === 'down');
+        if (prodigyIssues.length > 0) {
+            notificationProdigy.innerHTML = `
+                <div class="notification">
+                    <strong>Current Issues:</strong><br>
+                    ${prodigyIssues.map(hack => `${hack.name}: ${hack.problem}`).join('<br>')}
+                </div>
+            `;
+        }
+
+        // Render Prodigy Hack status list
+        const prodigyStatusList = document.getElementById('prodigy-status-list');
+        prodigyHacks.forEach(hack => {
+            const li = document.createElement('li');
+            li.className = `status-item ${hack.status}`;
+            li.innerHTML = `
+                <strong>${hack.name}</strong>
+                <p>Status: <span style="color: ${hack.status === 'down' ? 'var(--non-functional-red)' : 'var(--functional-green)'};">${hack.status}</span></p>
+                ${hack.problem ? `<p>Problem: ${hack.problem}</p>` : ''}
+            `;
+            prodigyStatusList.appendChild(li);
+        });
+    </script>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button class="home-button" onclick="window.location.href='/'">Back to Home</button>
+</body>
+</html>
