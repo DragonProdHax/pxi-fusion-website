@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player with VAST Ads</title>
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .video-container {
+            width: 80%;
+            max-width: 900px;
+        }
+
+        .video-js {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video
+            id="video-ad"
+            class="video-js vjs-default-skin"
+            controls
+            preload="auto"
+            autoplay
+            data-setup='{}'>
+            <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Video.js -->
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <!-- IMA SDK -->
+    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <!-- Video.js Ads -->
+    <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-ads@6.9.0/dist/videojs-contrib-ads.min.js"></script>
+    <!-- Video.js IMA -->
+    <script src="https://cdn.jsdelivr.net/npm/videojs-ima@1.12.0/dist/videojs.ima.min.js"></script>
+
+    <script>
+        // Initialize Video.js player
+        const player = videojs('video-ad', {
+            autoplay: true,
+            preload: 'auto',
+        });
+
+        // Configure IMA SDK for VAST Ads
+        player.ima({
+            adTagUrl: "https://chubbyfailure.com/d.mUF/zBdYGpNkvcZ/G/Uy/Ie_mL9eu/ZfUglzkDPlTMUc4xNAD/ks3tMTztQktPN/TdgL0pO/Ttcfz/NqQF"
+        });
+
+        // Initialize ads when the player is ready
+        player.on('ready', () => {
+            player.ima.initializeAdDisplayContainer();
+            player.ima.requestAds();
+            player.play();
+        });
+
+        // Handle ad events
+        player.on('adstart', () => {
+            console.log('Ad started!');
+        });
+
+        player.on('adend', () => {
+            console.log('Ad ended!');
+        });
+
+        player.on('adserror', (error) => {
+            console.error('Ad error:', error);
+        });
+    </script>
+</body>
+</html>

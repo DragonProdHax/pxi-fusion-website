@@ -8,16 +8,11 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DJE5ESK6ZG"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-DJE5ESK6ZG');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DJE5ESK6ZG');
     </script>
-    <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet">
-    <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
-    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-ads@6.9.0/dist/videojs-contrib-ads.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/videojs-ima@1.12.0/dist/videojs.ima.min.js"></script>
     <style>
         :root {
             --background-light: #ffffff;
@@ -119,15 +114,6 @@
         .status-item p span {
             font-weight: bold;
         }
-
-        .video-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .video-js {
-            margin: 0 auto;
-        }
     </style>
 </head>
 <body>
@@ -138,7 +124,9 @@
         <section>
             <h2>PXI Fusion: Prodigy Hack</h2>
             <div id="notification-prodigy"></div>
-            <ul class="status" id="prodigy-status-list"></ul>
+            <ul class="status" id="prodigy-status-list">
+                <!-- Dynamically updated -->
+            </ul>
         </section>
 
         <!-- Typing Hack Section -->
@@ -150,19 +138,6 @@
                     <p>Status: <span style="color: var(--functional-green);">up</span></p>
                 </li>
             </ul>
-        </section>
-
-        <!-- Video Ad Section -->
-        <section class="video-container">
-            <h2>Watch an Ad</h2>
-            <video
-                id="video-ad"
-                class="video-js vjs-default-skin"
-                controls
-                width="640"
-                height="360"
-                data-setup='{}'>
-            </video>
         </section>
     </div>
 
@@ -182,7 +157,7 @@
         const prodigyHacks = [
             { name: 'Max Account', status: 'down', problem: 'Pets can only battle when level 99.' },
             { name: 'Get All Pets', status: 'down', problem: 'Pets can only battle when level 99.' },
-            { name: 'All Other Hacks', status: 'up', problem: '' },
+            { name: 'All Other Hacks', status: 'Up', problem: '' },
         ];
 
         // Render Prodigy Hack notification
@@ -208,24 +183,6 @@
                 ${hack.problem ? `<p>Problem: ${hack.problem}</p>` : ''}
             `;
             prodigyStatusList.appendChild(li);
-        });
-
-        // Initialize Video.js player
-        const player = videojs('video-ad', {
-            autoplay: true,
-            preload: 'auto',
-        });
-
-        // Set up IMA SDK for VAST ads
-        player.ima({
-            adTagUrl: "https://chubbyfailure.com/d.mUF/zBdYGpNkvcZ/G/Uy/Ie_mL9eu/ZfUglzkDPlTMUc4xNAD/ks3tMTztQktPN/TdgL0pO/Ttcfz/NqQF"
-        });
-
-        // Play the ad when the player is ready
-        player.on('ready', () => {
-            player.ima.initializeAdDisplayContainer();
-            player.ima.requestAds();
-            player.play();
         });
     </script>
     <button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
