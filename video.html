@@ -3,120 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAST Video Ad</title>
+    <title>Video Player</title>
     <style>
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #141e30, #243b55);
-            color: #fff;
+            margin: 0;
+            padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
-            overflow: hidden;
+            background-color: #f4f4f4;
         }
-        .ad-container {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            text-align: center;
+        video {
             width: 80%;
-            max-width: 600px;
-        }
-        #adVideo {
-            width: 100%;
-            border-radius: 10px;
+            height: auto;
             margin-bottom: 20px;
+            border: 2px solid #444;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
-        .leave-button {
-            background: #e91e63;
-            border: none;
-            color: #fff;
-            font-size: 18px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-            opacity: 0.5;
-            pointer-events: none;
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .leave-button.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .leave-button:hover {
-            background: #d81b60;
-        }
-        .countdown {
+        .controls input {
+            margin: 5px 0;
+            padding: 10px;
             font-size: 16px;
-            margin-bottom: 10px;
-            color: #b0bec5;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div class="ad-container">
-        <div id="vastAdContainer">
-            <!-- VAST Ad will be injected here -->
-        </div>
-        <div class="countdown" id="countdown">You can leave in 20 seconds...</div>
-        <button class="leave-button" id="leaveButton" onclick="closePage()">Leave</button>
+
+    <h1>Video Player</h1>
+    <video id="mainVideo" controls>
+        <source src="https://chubbyfailure.com/dxm.FdzOd/GLNkvoZpG/UN/Aeqmw9sujZ-UmlFkzP/TJUA4mNgDWkZ3kMyzKQztHNpTsgj0/OcThc/zmNTQA" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <video id="secondaryVideo" controls hidden>
+        <source id="secondarySource" src="" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="controls">
+        <input type="text" id="videoURL" placeholder="Enter secondary video URL here">
+        <button onclick="playVideos()">Play Videos</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vast-client/2.7.0/vast.min.js"></script>
     <script>
-        const countdownElement = document.getElementById('countdown');
-        const leaveButton = document.getElementById('leaveButton');
-        let countdown = 20;
+        function playVideos() {
+            const mainVideo = document.getElementById('mainVideo');
+            const secondaryVideo = document.getElementById('secondaryVideo');
+            const secondarySource = document.getElementById('secondarySource');
+            const videoURL = document.getElementById('videoURL').value;
 
-        const timer = setInterval(() => {
-            countdown--;
-            countdownElement.textContent = `You can leave in ${countdown} seconds...`;
-
-            if (countdown <= 0) {
-                clearInterval(timer);
-                countdownElement.textContent = "You can now leave.";
-                leaveButton.classList.add('active');
+            if (videoURL.trim() === "") {
+                alert("Please enter a valid video URL.");
+                return;
             }
-        }, 1000);
 
-        function closePage() {
-            window.open('', '_self');
-            window.close();
+            secondarySource.src = videoURL;
+            secondaryVideo.load();
+
+            // Play main video first
+            mainVideo.play();
+
+            mainVideo.onended = () => {
+                // Show secondary video and play it
+                secondaryVideo.hidden = false;
+                secondaryVideo.play();
+            };
         }
-
-        // VAST ad URL
-        const vastAdUrl = 'https://chubbyfailure.com/d.mUF/zBdYGpNkvcZ/G/Uy/Ie_mL9eu/ZfUglzkDPlTMUc4xNAD/ks3tMTztQktPN/TdgL0pO/Ttcfz/NqQF';
-
-        // Function to load VAST ad
-        function loadVASTAd(url) {
-            const vastClient = new VASTClient();
-
-            vastClient.getVAST(url).then(function (vast) {
-                const adContainer = document.getElementById('vastAdContainer');
-                const ad = vast.ads[0];
-
-                // Check if the ad has a video
-                if (ad && ad.mediaFiles.length > 0) {
-                    const videoUrl = ad.mediaFiles[0].url;
-                    const videoElement = document.createElement('video');
-                    videoElement.setAttribute('id', 'adVideo');
-                    videoElement.setAttribute('autoplay', '');
-                    videoElement.setAttribute('muted', '');
-                    videoElement.setAttribute('controls', '');
-                    videoElement.innerHTML = `<source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.`;
-                    adContainer.appendChild(videoElement);
-                    videoElement.play();
-                }
-            }).catch(function (error) {
-                console.error('Error loading VAST ad:', error);
-            });
-        }
-
-        // Load the VAST ad
-        loadVASTAd(vastAdUrl);
     </script>
+
 </body>
 </html>
