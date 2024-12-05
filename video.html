@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player with VAST Ads</title>
+    <title>Video Ad Player</title>
     <!-- Video.js CSS -->
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
     <style>
@@ -35,11 +35,8 @@
             id="video-ad"
             class="video-js vjs-default-skin"
             controls
-            preload="auto"
             autoplay
             data-setup='{}'>
-            <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
-            Your browser does not support the video tag.
         </video>
     </div>
 
@@ -59,30 +56,35 @@
             preload: 'auto',
         });
 
-        // Configure IMA SDK for VAST Ads
-        player.ima({
-            adTagUrl: "https://chubbyfailure.com/d.mUF/zBdYGpNkvcZ/G/Uy/Ie_mL9eu/ZfUglzkDPlTMUc4xNAD/ks3tMTztQktPN/TdgL0pO/Ttcfz/NqQF"
-        });
+        // Ensure the IMA plugin is loaded
+        if (videojs.getPlugins().includes('ima')) {
+            // Configure IMA SDK for VAST Ads
+            player.ima({
+                adTagUrl: "https://chubbyfailure.com/d.mUF/zBdYGpNkvcZ/G/Uy/Ie_mL9eu/ZfUglzkDPlTMUc4xNAD/ks3tMTztQktPN/TdgL0pO/Ttcfz/NqQF"
+            });
 
-        // Initialize ads when the player is ready
-        player.on('ready', () => {
-            player.ima.initializeAdDisplayContainer();
-            player.ima.requestAds();
-            player.play();
-        });
+            // Initialize ads when the player is ready
+            player.on('ready', () => {
+                player.ima.initializeAdDisplayContainer();
+                player.ima.requestAds();
+                player.play();
+            });
 
-        // Handle ad events
-        player.on('adstart', () => {
-            console.log('Ad started!');
-        });
+            // Handle ad events
+            player.on('adstart', () => {
+                console.log('Ad started!');
+            });
 
-        player.on('adend', () => {
-            console.log('Ad ended!');
-        });
+            player.on('adend', () => {
+                console.log('Ad ended!');
+            });
 
-        player.on('adserror', (error) => {
-            console.error('Ad error:', error);
-        });
+            player.on('adserror', (error) => {
+                console.error('Ad error:', error);
+            });
+        } else {
+            console.error('Video.js IMA plugin is not available.');
+        }
     </script>
 </body>
 </html>
