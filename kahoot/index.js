@@ -17,3 +17,5 @@ function joinTestAPI(pin, name, botCount) {
       .catch(err => console.error(`test ${testname} failed to join:`, err));
   }
 }
+
+// This is not neede anymore this was just for a test
