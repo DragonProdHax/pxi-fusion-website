@@ -103,9 +103,8 @@
             Swal.fire({
               icon: "success",
               title: "Access Granted!",
-              html: `<p>You have <strong>${hoursLeft} hours and ${minutesLeft} minutes</strong> left.</p>`,
-              confirmButtonText: "Continue",
-              willClose: () => {
+              html: `<p style="color: black;">You have <strong>${hoursLeft} hours and ${minutesLeft} minutes</strong> left.</p>`,
+              confirmButtonText: "Continue",              willClose: () => {
                 // Remove the blur overlay when the popup closes
                 overlay.remove();
               },
