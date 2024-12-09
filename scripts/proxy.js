@@ -1,4 +1,4 @@
-(function loadFirebase() {
+function loadFirebase() {
   // Load SweetAlert2 library dynamically
   const sweetAlertScript = document.createElement("script");
   sweetAlertScript.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
@@ -33,12 +33,38 @@
         const db = firebase.firestore();
         console.log("Firestore is ready:", db);
 
-        // Add the blur overlay to the page
+        // Check localStorage first
+        const savedExpire = localStorage.getItem("pinExpire");
+        const currentTime = new Date().getTime();
+
+        if (savedExpire && new Date(savedExpire).getTime() > currentTime) {
+          // Calculate time left from localStorage
+          const expireDate = new Date(savedExpire).getTime();
+          const timeLeft = expireDate - currentTime;
+          const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
+          const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+          // Show SweetAlert with remaining time
+          Swal.fire({
+            icon: "success",
+            title: "Access Granted!",
+            html: `
+              <div style="display: flex; flex-direction: column; align-items: center; font-size: 18px;">
+                <p style="color: black; font-size: 18px; text-align: center;">
+                  Time left: <strong>${hoursLeft} hours and ${minutesLeft} minutes</strong>
+                </p>
+              </div>
+            `,
+            confirmButtonText: "Continue",
+          });
+          return; // Skip Firebase check
+        }
+
+        // If not in localStorage, prompt for PIN and check Firebase
         const overlay = document.createElement("div");
         overlay.id = "blur-overlay";
         document.body.appendChild(overlay);
 
-        // Show SweetAlert2 popup for PIN input
         Swal.fire({
           title: "Enter PIN",
           input: "text",
@@ -103,14 +129,24 @@
             Swal.fire({
               icon: "success",
               title: "Access Granted!",
-              html: `<p style="color: black;">You have <strong>${hoursLeft} hours and ${minutesLeft} minutes</strong> left.</p>`,
-              confirmButtonText: "Continue",              willClose: () => {
-                // Remove the blur overlay when the popup closes
+              html: `
+                <div style="display: flex; flex-direction: column; align-items: center; font-size: 18px;">
+                  <img 
+                    src="https://cdn.pixabay.com/photo/2013/07/13/11/44/clock-158536_1280.png" 
+                    alt="Cartoon Watch" 
+                    style="width: 150px; height: 150px; margin-bottom: 20px;"
+                  />
+                  <p style="color: black; font-size: 18px; text-align: center;">
+                    Time left: <strong>${hoursLeft} hours and ${minutesLeft} minutes</strong>
+                  </p>
+                </div>
+              `,
+              confirmButtonText: "Continue",
+              willClose: () => {
                 overlay.remove();
               },
             });
           } else {
-            // Keep the blur overlay active
             document.getElementById("blur-overlay").style.display = "block";
           }
         });
@@ -150,4 +186,6 @@
     }
   `;
   document.head.appendChild(style);
-})();
+}
+
+loadFirebase();
