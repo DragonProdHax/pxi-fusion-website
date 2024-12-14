@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading Screen</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('https://i.makeagif.com/media/12-23-2022/sgEhAU.gif') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .loader-container {
+      text-align: center;
+    }
+
+    .spinner {
+      width: 80px;
+      height: 80px;
+      border: 10px solid rgba(255, 255, 255, 0.2);
+      border-top: 10px solid #ffffff;
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-text {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+      animation: fadeText 1.5s ease-in-out infinite;
+    }
+
+    @keyframes fadeText {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <div class="loading-text">Sending Bots, Don't Close This Tab...</div>
+  </div>
+</body>
+</html>
