@@ -1,95 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PXI Fusion Blooket</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .container {
-      text-align: center;
-      padding: 20px;
-      border: 2px solid #00ffff;
-      border-radius: 10px;
-      background: #1e1e1e;
-    }
-    input {
-      margin: 10px 0;
-      padding: 10px;
-      width: 80%;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      background: #00ffff;
-      border: none;
-      border-radius: 5px;
-      color: #000;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #00cccc;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PXI Fusion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Blooket Bot Flooder</h1>
-    <input type="text" id="gameCode" placeholder="Enter Game Code">
-    <input type="text" id="botName" placeholder="Enter Bot Name">
-    <button id="floodButton">Flood</button>
-  </div>
-  <script>
-    // Add event listener to the Flood button
-    document.getElementById('floodButton').addEventListener('click', () => {
-      const gameCode = document.getElementById('gameCode').value;
-      const botName = document.getElementById('botName').value;
 
-      // Check if the fields are empty
-      if (!gameCode || !botName) {
-        alert('Please fill out both fields!');
-        return;
-      }
+    <div class="container">
+        <h1>PXI Fusion - Blooket Bot</h1>
+        <button onclick="openBlooketBot()">Open Blooket Bot</button>
+    </div>
 
-      // Open the Blooket bot loader in a new window
-      const botWindow = window.open('https://blooketbot.glitch.me', '_blank', 'width=800,height=600');
+    <script>
+        function openBlooketBot() {
+            // Open a new window
+            const botWindow = window.open('', '_blank', 'width=800,height=600');
 
-      // Set up iframe to lock the user inside
-      botWindow.document.body.innerHTML = `
-        <iframe src="https://pxi-fusion.com/blooket-load-screen" 
-          style="border:none; width:100vw; height:100vh;">
-        </iframe>
-        <script>
-          window.closeIframe = function() {
-            document.body.innerHTML = '<h1>You can now exit the iframe.</h1>';
-          };
-        </script>
-      `;
+            // Write basic HTML content to the new window
+            botWindow.document.write('<html><head><title>Blooket Bot</title></head><body></body></html>');
+            botWindow.document.close(); // Close the document to finish loading
 
-      // Inject game code and bot name into the bot window
-      botWindow.onload = () => {
-        const gameCodeBB = botWindow.document.getElementsByClassName('idInput')[0];
-        const nameBB = botWindow.document.getElementsByClassName('nameInput')[0];
-        if (gameCodeBB && nameBB) {
-          gameCodeBB.value = gameCode;
-          nameBB.value = botName;
-          botWindow.join();
-        } else {
-          console.error('Game code or name input not found in the bot window.');
+            // Wait for the window to load, then inject the iframe and run the script
+            botWindow.onload = () => {
+                // Inject an iframe into the new window
+                const iframe = botWindow.document.createElement('iframe');
+                iframe.src = 'https://blooketbot.glitch.me/';  // Set the iframe source to Blooket Bot URL
+                iframe.style.border = 'none';
+                iframe.style.width = '100vw';  // Full screen width
+                iframe.style.height = '100vh'; // Full screen height
+                botWindow.document.body.appendChild(iframe);
+
+                // Wait for the iframe to load and then execute the JavaScript code
+                iframe.onload = () => {
+                    const bc = botWindow.document.getElementsByClassName('idInput')[0];
+                    if (bc) {
+                        bc.value = '25';  // Set the value to 25
+                    } else {
+                        console.log("Element not found");
+                    }
+                };
+            };
         }
-      };
-    });
-  </script>
+    </script>
+
 </body>
 </html>
