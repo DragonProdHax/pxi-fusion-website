@@ -5,32 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blooket Bot</title>
     <style>
-        /* Basic Reset */
         body {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f8f9fa;
-            overflow: hidden;
-        }
-
-        .alert {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #ffcc00;
-            color: #000;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 10;
+            overflow: hidden; /* Prevent scrolling */
         }
 
         iframe {
@@ -44,19 +22,6 @@
     </style>
 </head>
 <body>
-    <div class="alert">173773</div>
-
-    <script>
-        // Create and add the iframe
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://blooketbot.glitch.me/';
-        document.body.appendChild(iframe);
-
-        // Remove the alert after 5 seconds (optional)
-        setTimeout(() => {
-            const alert = document.querySelector('.alert');
-            if (alert) alert.remove();
-        }, 5000);
-    </script>
+    <iframe src="https://blooketbot.glitch.me/"></iframe>
 </body>
 </html>
