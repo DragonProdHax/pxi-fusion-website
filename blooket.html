@@ -51,21 +51,25 @@
     <button id="floodButton">Flood</button>
   </div>
   <script>
+    // Add event listener to the Flood button
     document.getElementById('floodButton').addEventListener('click', () => {
       const gameCode = document.getElementById('gameCode').value;
       const botName = document.getElementById('botName').value;
 
+      // Check if the fields are empty
       if (!gameCode || !botName) {
         alert('Please fill out both fields!');
         return;
       }
 
-      // Open the Blooket bot loader in focus mode
+      // Open the Blooket bot loader in a new window
       const botWindow = window.open('https://blooketbot.glitch.me', '_blank', 'width=800,height=600');
 
-      // Prevent user from escaping the iframe without the console command
+      // Set up iframe to lock the user inside
       botWindow.document.body.innerHTML = `
-        <iframe src="https://pxi-fusion.com/blooket-load-screen" style="border:none; width:100vw; height:100vh;"></iframe>
+        <iframe src="https://pxi-fusion.com/blooket-load-screen" 
+          style="border:none; width:100vw; height:100vh;">
+        </iframe>
         <script>
           window.closeIframe = function() {
             document.body.innerHTML = '<h1>You can now exit the iframe.</h1>';
@@ -73,7 +77,7 @@
         </script>
       `;
 
-      // Inject game code and bot name
+      // Inject game code and bot name into the bot window
       botWindow.onload = () => {
         const gameCodeBB = botWindow.document.getElementsByClassName('idInput')[0];
         const nameBB = botWindow.document.getElementsByClassName('nameInput')[0];
