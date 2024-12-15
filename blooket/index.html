@@ -21,31 +21,6 @@
 </head>
 <body>
   <iframe src="https://blooketbot.glitch.me"></iframe>
-  <script>
-    // SweetAlert popup
-    Swal.fire({
-      title: 'Hi',
-      text: 'Welcome to the fullscreen page!',
-      icon: 'info',
-      confirmButtonText: 'Okay'
-    });
-
-    // Disable right-click
-    document.addEventListener('contextmenu', event => event.preventDefault());
-
-    // Disable keyboard shortcuts
-    document.addEventListener('keydown', event => {
-      if (
-        event.key === 'F12' || // Developer tools
-        (event.ctrlKey && event.key === 's') || // Save page
-        (event.ctrlKey && event.key === 'p') || // Print page
-        (event.ctrlKey && event.key === 'w') || // Close tab
-        (event.ctrlKey && event.key === 'u') // View source
-      ) {
-        event.preventDefault();
-      }
-    });
-  </script>
 
   <script>
     // Get element and set value after 1 second
