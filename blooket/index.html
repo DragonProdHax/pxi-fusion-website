@@ -1,1 +1,50 @@
-Coming Soon
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullscreen Iframe</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <iframe src="https://blooketbot.glitch.me"></iframe>
+  <script>
+    // SweetAlert popup
+    Swal.fire({
+      title: 'Hi',
+      text: 'Welcome to the fullscreen page!',
+      icon: 'info',
+      confirmButtonText: 'Okay'
+    });
+
+    // Disable right-click
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Disable keyboard shortcuts
+    document.addEventListener('keydown', event => {
+      if (
+        event.key === 'F12' || // Developer tools
+        (event.ctrlKey && event.key === 's') || // Save page
+        (event.ctrlKey && event.key === 'p') || // Print page
+        (event.ctrlKey && event.key === 'w') || // Close tab
+        (event.ctrlKey && event.key === 'u') // View source
+      ) {
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
