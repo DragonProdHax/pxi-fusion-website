@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kahoot Answers Fetcher</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .get-answers-btn {
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .get-answers-btn:hover {
+            background-color: #0056b3;
+        }
+        .kahoot-cover {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .kahoot-title {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+        }
+        .answers-section {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .question-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+            display: flex;
+            gap: 20px;
+        }
+        .question-info {
+            flex: 0 0 200px;
+        }
+        .question-content {
+            flex: 1;
+        }
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question-type {
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .correct-answer {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .question-image {
+            max-width: 150px;
+            height: auto;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .not-supported {
+            color: red;
+        }
+        .choice-list {
+            margin-top: 10px;
+            padding-left: 0;
+            list-style: none;
+        }
+        .choice-item {
+            margin: 8px 0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .choice-correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .choice-incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .choice-icon {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .loading-dots {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background-color: #007bff;
+            border-radius: 50%;
+            animation: dotPulse 1.4s infinite;
+        }
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes dotPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Kahoot Answer Fetcher</h1>
+    <input type="text" id="quizId" class="input-field" placeholder="Enter Quiz ID">
+    <button class="get-answers-btn" id="getAnswersBtn">Get Answers</button>
+
+    <div class="loading-dots" id="loadingDots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <div id="kahootContent" style="display: none;">
+        <img id="kahootCover" class="kahoot-cover" alt="Kahoot Cover Image">
+        <h2 id="kahootTitle" class="kahoot-title"></h2>
+        <div id="answersSection" class="answers-section"></div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('getAnswersBtn').addEventListener('click', async function() {
+        const quizId = document.getElementById('quizId').value;
+        const loadingDots = document.getElementById('loadingDots');
+        const kahootContent = document.getElementById('kahootContent');
+
+        if (!quizId) {
+            console.error("Quiz ID is required!");
+            return;
+        }
+
+        loadingDots.style.display = 'block';
+        kahootContent.style.display = 'none';
+
+        const payload = { quizId: quizId };
+
+        try {
+            const response = await fetch("https://pxi-fusion-server.vercel.app/api/kahoot/answers", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} - ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            window.fusion = { kahoot: { data: data } };
+            console.log("fusion.kahoot.data:", fusion.kahoot.data);
+
+            const kahootData = fusion.kahoot.data.kahoot;
+            if (kahootData) {
+                document.getElementById('kahootCover').src = kahootData.cover;
+                document.getElementById('kahootTitle').textContent = kahootData.title;
+
+                const answersSection = document.getElementById('answersSection');
+                answersSection.innerHTML = '';
+
+                const questionCount = kahootData.questions.length;
+                for(let i = 0; i < questionCount; i++) {
+                    const questionCard = document.createElement('div');
+                    questionCard.className = 'question-card';
+                    
+                    const questionInfo = document.createElement('div');
+                    questionInfo.className = 'question-info';
+                    
+                    const questionContent = document.createElement('div');
+                    questionContent.className = 'question-content';
+                    
+                    if (kahootData.questions[i].image) {
+                        const questionImage = document.createElement('img');
+                        questionImage.className = 'question-image';
+                        questionImage.src = kahootData.questions[i].image;
+                        questionImage.alt = `Question ${i + 1} Image`;
+                        questionInfo.appendChild(questionImage);
+                    }
+                    
+                    const questionText = document.createElement('div');
+                    questionText.className = 'question-text';
+                    
+                    const questionType = kahootData.questions[i].type === 'multiple_select_quiz' ? 'Select Multiple' : kahootData.questions[i].type;
+                    const questionTextContent = kahootData.questions[i].question ? kahootData.questions[i].question.replace(/<\/?b>/g, '') : '';
+                    
+                    questionText.textContent = `Question ${i + 1}: ${questionTextContent}`;
+                    
+                    const questionTypeDiv = document.createElement('div');
+                    questionTypeDiv.className = 'question-type';
+                    questionTypeDiv.textContent = `Question Type: ${questionType}`;
+                    
+                    questionInfo.appendChild(questionText);
+                    questionInfo.appendChild(questionTypeDiv);
+                    
+                    const choicesList = document.createElement('ul');
+                    choicesList.className = 'choice-list';
+                    
+                    if (kahootData.questions[i].type === 'content') {
+                        const notSupported = document.createElement('div');
+                        notSupported.className = 'not-supported';
+                        notSupported.textContent = 'We dont support this type';
+                        questionContent.appendChild(notSupported);
+                    } else if (kahootData.questions[i].choices && Array.isArray(kahootData.questions[i].choices)) {
+                        kahootData.questions[i].choices.forEach((choice) => {
+                            const choiceItem = document.createElement('li');
+                            choiceItem.className = 'choice-item';
+                            
+                            if (choice.correct) {
+                                choiceItem.classList.add('choice-correct');
+                                choiceItem.innerHTML = '<span class="choice-icon">✓</span>' + choice.answer;
+                            } else {
+                                choiceItem.classList.add('choice-incorrect');
+                                choiceItem.innerHTML = '<span class="choice-icon">✗</span>' + choice.answer;
+                            }
+                            
+                            choicesList.appendChild(choiceItem);
+                        });
+                    }
+                    
+                    if (kahootData.questions[i].type !== 'content') {
+                        questionContent.appendChild(choicesList);
+                    }
+                    
+                    questionCard.appendChild(questionInfo);
+                    questionCard.appendChild(questionContent);
+                    answersSection.appendChild(questionCard);
+                }
+
+                loadingDots.style.display = 'none';
+                kahootContent.style.display = 'block';
+            } else {
+                console.error("Invalid Kahoot data format.");
+                loadingDots.style.display = 'none';
+                kahootContent.style.display = 'none';
+            }
+
+        } catch (error) {
+            console.error("Failed to fetch answers:", error);
+            loadingDots.style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>
