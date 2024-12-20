@@ -26,6 +26,14 @@
             font-size: 24px;
             margin-bottom: 20px;
         }
+        .disclaimer {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
         .input-field {
             width: 100%;
             padding: 10px;
@@ -163,6 +171,9 @@
 
 <div class="container">
     <h1>Kahoot Answer Fetcher</h1>
+    <div class="disclaimer">
+        <strong>Disclaimer:</strong> This Kahoot Answer Fetcher is still learning and sometimes can make mistakes. If you don't get answers within 3 attempts, please make sure the Kahoot is not private.
+    </div>
     <input type="text" id="quizId" class="input-field" placeholder="Enter Quiz ID">
     <button class="get-answers-btn" id="getAnswersBtn">Get Answers</button>
 
@@ -180,6 +191,7 @@
 </div>
 
 <script>
+    let attempts = 0;
     document.getElementById('getAnswersBtn').addEventListener('click', async function() {
         const quizId = document.getElementById('quizId').value;
         const loadingDots = document.getElementById('loadingDots');
@@ -190,6 +202,7 @@
             return;
         }
 
+        attempts++;
         loadingDots.style.display = 'block';
         kahootContent.style.display = 'none';
 
@@ -291,15 +304,24 @@
 
                 loadingDots.style.display = 'none';
                 kahootContent.style.display = 'block';
+                attempts = 0;
             } else {
                 console.error("Invalid Kahoot data format.");
                 loadingDots.style.display = 'none';
                 kahootContent.style.display = 'none';
+                if (attempts >= 3) {
+                    alert("Error: Make sure this Kahoot is not private!");
+                    attempts = 0;
+                }
             }
 
         } catch (error) {
             console.error("Failed to fetch answers:", error);
             loadingDots.style.display = 'none';
+            if (attempts >= 3) {
+                alert("Error: Make sure this Kahoot is not private!");
+                attempts = 0;
+            }
         }
     });
 </script>
