@@ -372,5 +372,24 @@
         const icon = document.querySelector('.theme-toggle i');
         icon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
     });
-</script></body>
+</script>
+<script>
+    let CLF_config = {
+        app_id: "fe117d54-13f1-4c1e-858c-02449b1308ee",
+        showNewUpdates: true, // automatically show new updates
+        data: {
+            user_id: '123456', // required
+            user_email: 'user@email.com', // required
+            user_name: 'User Name', // optional
+            custom_data: {
+                'JobRole': 'CEO', // optional
+                'Plan': 'Pro', // optional
+                'teamMates': '4', // optional
+                'MonthlySpend': '50 USD' // optional
+            }
+        }
+    };
+</script>
+<script async src="https://widget.changelogfy.com/index.js"></script>
+</body>
 </html>
