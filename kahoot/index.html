@@ -338,7 +338,7 @@
                 }
 
                 const data = await response.json();
-                window.fusion = { kahoot: { data: data } };
+                window.fusion = { kahoot: { data } };
                 
                 const kahootData = fusion.kahoot.data.kahoot;
                 if (kahootData) {
