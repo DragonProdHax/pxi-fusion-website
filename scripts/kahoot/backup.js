@@ -1,7 +1,7 @@
 document.getElementById('botForm').onsubmit = function(event) {
     event.preventDefault();
     const formData = new FormData(this);
-    fetch('https://knowledgeable-judicious-sphynx.glitch.me/start', {
+    fetch('https://arslaans-kahoot-bot.glitch.me/start', {
         method: 'POST',
         body: formData
     })
